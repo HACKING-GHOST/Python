@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
 1. Problem Restatement
 
-Two integers `a` and `b` are given as input.
+Two integers a and b are given as input.
 We must compute and print:
 
 1. Their sum
@@ -41,7 +41,7 @@ This problem tests (basic arithmetic operations and input/output handling) in Py
 The key idea is straightforward:
 
 * Read integers from standard input
-* Apply arithmetic operators (`+`, `-`, `*`)
+* Apply arithmetic operators (+, -, *)
 * Print results in the required order
 
 No loops or conditions are needed because each operation is independent.
