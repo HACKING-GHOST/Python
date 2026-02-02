@@ -1,0 +1,188 @@
+Task
+The provided code stub reads an integer, , from STDIN. For all non-negative integers ,i<n print i**2  
+
+
+
+-------
+C O D E
+-------
+
+
+
+if __name__ == '__main__': 
+    n = int(input())
+    for i in range(n):
+            print(i**2)
+
+
+
+1. Problem Restatement
+
+Given a non-negative integer n, print the square of every integer i such that 0 ≤ i < n, each on a new line.
+
+Key constraints:
+* Start from 0
+* Stop before n
+* Output exactly n values
+
+2. Core Idea / Insight
+
+The key insight is that this is a fixed-count iteration problem, not a condition-controlled one.
+
+When the number of iterations is known (n times), for + range() already guarantees correctness:
+* Starting point
+* Ending point
+* Increment behavior
+
+Any attempt to manually re-control i inside the loop is redundant and dangerous.
+
+
+
+3. Step-by-Step Logic (Without Code)
+
+* Read integer n
+* Start from i = 0
+* For each integer i less than n:
+* Compute i × i
+* Print the result
+
+Stop automatically after n iterations
+
+* No manual increment.
+* No condition checking.
+* No nested loops.
+
+
+
+4. Code Walkthrough (Logic → Implementation)
+if __name__ == '__main__':
+    n = int(input())
+    for i in range(n):
+        print(i**2)
+
+Why this works:
+* range(n) generates: 0, 1, 2, ..., n-1
+* for i in range(n):
+  * Assigns i automatically
+  * Increments i internally
+  * Stops exactly at the correct time
+* i**2 computes the square cleanly
+
+Critical Detail:
+
+The for loop owns the variable i.
+You are not supposed to modify it.
+
+
+
+5. Time & Space Complexity
+
+Time Complexity: O(n)
+* One operation per value of i
+Space Complexity: O(1)
+* No extra data structures
+
+This is optimal. You cannot do better because the problem demands n outputs.
+
+
+
+6. Why This Solution Is Optimal
+
+* Uses Python’s native iteration mechanism
+* Avoids unnecessary checks
+* No redundant logic
+* No edge-case leakage
+
+Any alternative that introduces:
+
+* while loops
+* manual increments
+* condition checks
+
+…adds complexity without benefit.
+
+
+
+7. Common Mistakes & Logic Traps (My Exact Errors)
+
+Mistake 1: Mixing for and while on the same variable
+
+I tried something like:
+
+for i in range(n):
+    while i < n:
+        print(i**2)
+        i += 1
+
+
+Why this fails:
+
+* for already increments i
+* while increments i again
+
+Result: skipped values or extra outputs
+
+I created double control over the same variable.
+
+Mistake 2: Manually incrementing i inside a for loop
+for i in range(n):
+    print(i**2)
+    i = i + 1
+
+
+Why this is logically wrong:
+
+* The for loop ignores my reassignment
+* On the next iteration, i is overwritten by range()
+* My increment does nothing useful
+
+This shows a misunderstanding of loop variable scope and ownership.
+
+Mistake 3: Hard-coding ranges during testing
+
+for i in range(5):
+Then expecting it to work for arbitrary n.
+
+Why this breaks logic:
+
+* I tested a specific case
+* The problem requires a general solution
+* My code became input-agnostic
+This is how people pass sample tests and fail hidden ones.
+
+
+
+8. Trade-offs & Alternatives
+Alternative using while (Valid but unnecessary)
+i = 0
+while i < n:
+    print(i**2)
+    i += 1
+
+
+Trade-off:
+
+More control
+* More room for errors
+* Same performance
+Use (while) only when iteration count is not known upfront.
+
+
+
+9. Pattern Recognition (What I Actually Learned)
+
+This problem teaches a fundamental rule:
+* Never mix iteration mechanisms for the same variable
+
+Generalized lessons:
+
+* for → fixed iterations → don’t touch the counter
+* while → condition-based → we manage everything
+* Let one structure control the flow, not two
+
+This pattern repeats in:
+* Array traversal
+* Index-based DP
+* Sliding windows
+
+Simulation problems
