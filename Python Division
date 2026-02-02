@@ -1,0 +1,134 @@
+Task
+The provided code stub reads two integers, a and b, from STDIN.
+Add logic to print two lines. The first line should contain the result of integer division, a // b. The second line should contain the result of float division,  a/b .
+No rounding or formatting is necessary.
+
+
+
+-------
+C O D E
+-------
+
+
+
+if __name__ == '__main__':
+    a = int(input())
+    b = int(input())
+    print(a//b)
+    print(a/b)
+
+
+
+1. Problem Restatement
+
+We are given two integers a and b.
+We must:
+* Print the result of integer division (a // b)
+* Print the result of floating-point division (a / b)
+* Each result must be printed on a new line without formatting or rounding.
+
+
+
+2. Core Idea / Key Insight
+
+Python provides two fundamentally different division operators, each designed for a different intent:
+* // → quotient-only division (floor division)
+* / → true division (returns precise decimal result)
+
+The key insight is recognizing which operator preserves integer semantics and which preserves mathematical precision.
+
+
+
+3. Step-by-Step Logic (Language-Independent)
+
+1. Read two numeric inputs.
+2. Convert inputs into integers to ensure arithmetic operations behave as expected.
+3. Compute:
+  * Integer division to obtain the quotient without fractional part.
+  * Floating division to obtain the exact division result.
+4. Output both results on separate lines in the required order.
+
+No loops, conditions, or additional processing are needed because the problem guarantees valid input.
+
+
+
+4. Code Walkthrough (Logic → Implementation)
+
+a = int(input())
+b = int(input())
+
+* Inputs are read as strings and explicitly converted to integers.
+* This avoids accidental string operations or implicit type issues.
+
+print(a // b)
+
+* // performs floor division.
+* The result is the largest integer less than or equal to a / b.
+* For positive numbers, this behaves like truncation.
+
+print(a / b)
+
+* / performs true division.
+* Always returns a floating-point number, even when division is exact.
+
+
+
+5. Time & Space Complexity
+
+Time Complexity: O(1)
+ * Only constant-time arithmetic operations.
+Space Complexity: O(1)
+ * No additional memory usage beyond two variables.
+
+This is optimal and cannot be improved.
+
+
+
+6. Why This Solution Is Optimal
+
+* The task requires exactly two arithmetic operations.
+* Python’s built-in operators are already optimized at the interpreter level.
+* Any alternative (manual division, conditionals, libraries) would be redundant and inefficient.
+
+Using the correct operator directly is the most precise and readable approach.
+
+
+
+7. Common Mistakes & Traps
+
+Using / instead of // for integer division
+ * Leads to incorrect output type.
+Assuming // always truncates
+ * For negative numbers, // floors instead of truncating.
+Forgetting type conversion
+ * input() returns strings; arithmetic would fail without int().
+Trying to format output unnecessarily
+ * The problem explicitly forbids formatting.
+
+
+
+8. Trade-offs & Alternatives
+
+Alternative: int(a / b)
+ * Incorrect for negative values.
+ * Slower and less clear.
+
+Alternative: Manual division logic
+ * Overengineering.
+ * Error-prone.
+The chosen solution is clear, safe, and idiomatic Python.
+
+
+
+9. Pattern Recognition (Where This Appears Again)
+
+* This distinction appears in:
+* Competitive programming problems involving constraints
+* Financial calculations (precision vs rounding)
+* Index calculations and pagination logic
+* Interview questions testing language fundamentals
+
+Rule to remember:
+
+* Use // when we care about discrete units.
+* Use / when we care about mathematical accuracy.
