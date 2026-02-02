@@ -1,6 +1,5 @@
 Task
 The provided code stub reads two integers from STDIN, a and b. Add code to print three lines where:
-
 The first line contains the sum of the two numbers.
 The second line contains the difference of the two numbers (first - second).
 The third line contains the product of the two numbers.
@@ -21,30 +20,23 @@ if __name__ == '__main__':
     print(a*b)
 
 
-Good. This is a **simple problem**, which makes it *perfect* for learning how to explain code **cleanly and correctly without overthinking**. If you can’t explain *this* well, you’re not ready for harder ones.
 
-Below is a **GitHub-ready explanation** using the **Code Explanation Framework**. You can paste this directly under your code.
-
----
-
-# 🔹 Problem: Basic Arithmetic Operations in Python
-
-## 1. Problem Restatement
+1. Problem Restatement
 
 Two integers `a` and `b` are given as input.
 We must compute and print:
 
 1. Their sum
-2. Their difference (`a - b`)
+2. Their difference (a - b)
 3. Their product
 
 Each result must be printed on a new line.
 
----
 
-## 2. Core Idea / Insight
 
-This problem tests **basic arithmetic operations and input/output handling** in Python.
+2. Core Idea / Insight
+
+This problem tests (basic arithmetic operations and input/output handling) in Python.
 
 The key idea is straightforward:
 
@@ -54,9 +46,9 @@ The key idea is straightforward:
 
 No loops or conditions are needed because each operation is independent.
 
----
 
-## 3. Step-by-Step Logic (Without Code)
+
+3. Step-by-Step Logic (Without Code)
 
 1. Read the first integer and store it.
 2. Read the second integer and store it.
@@ -66,80 +58,70 @@ No loops or conditions are needed because each operation is independent.
 
 Each operation is executed exactly once.
 
----
 
-## 4. Code Walkthrough (Logic → Implementation)
 
-```python
+4. Code Walkthrough (Logic → Implementation)
+
 if __name__ == '__main__':
-```
 
 * Ensures the code runs only when the file is executed directly, not when imported.
 
-```python
 a = int(input())
 b = int(input())
-```
 
-* `input()` reads values as strings.
-* `int()` converts them to integers so arithmetic operations are possible.
+* input() reads values as strings.
+* int() converts them to integers so arithmetic operations are possible.
 
-```python
 print(a + b)
-```
 
-* Computes and prints the sum of `a` and `b`.
+* Computes and prints the sum of a and b.
 
-```python
 print(a - b)
-```
 
-* Computes and prints the difference (`a - b`), respecting the order.
+* Computes and prints the difference (a - b), respecting the order.
 
-```python
 print(a * b)
-```
 
 * Computes and prints the product of the two numbers.
 
----
 
-## 5. Time & Space Complexity
 
-* **Time Complexity:** `O(1)`
+5. Time & Space Complexity
+
+* Time Complexity: O(1)
   Each arithmetic operation is constant time.
-* **Space Complexity:** `O(1)`
+* Space Complexity: O(1)
   Only two integer variables are stored.
 
----
 
-## 6. Why This Solution Is Optimal
+
+6. Why This Solution Is Optimal
 
 * The task requires exactly three arithmetic operations.
 * Any solution must read both inputs and compute these values.
 * No loops, conditions, or additional data structures are necessary.
-* This is the **simplest and most efficient** way to solve the problem.
+* This is the (simplest and most efficient) way to solve the problem.
 
----
 
-## 7. Common Mistakes & Traps
 
-* Forgetting to convert input to `int`, leading to string concatenation instead of addition.
+7. Common Mistakes & Traps
+
+* Forgetting to convert input to int, leading to string concatenation instead of addition.
 * Printing results in the wrong order.
-* Using `b - a` instead of `a - b`.
+* Using b - a instead of a - b.
 * Adding unnecessary logic like loops or conditionals.
 
----
 
-## 8. Trade-offs & Alternatives
+
+8. Trade-offs & Alternatives
 
 * Arithmetic could be done in one line, but that would reduce readability.
-* Using variables for results (e.g., `sum = a + b`) improves clarity but is optional.
-* This solution prioritizes **clarity and minimalism**.
+* Using variables for results (e.g., sum = a + b) improves clarity but is optional.
+* This solution prioritizes (clarity and minimalism).
 
----
 
-## 9. Pattern Recognition (Meta-Learning)
+
+9. Pattern Recognition (Meta-Learning)
 
 This problem introduces patterns that appear everywhere:
 
@@ -154,5 +136,5 @@ These fundamentals are reused in:
 * Interview problems
 * Real-world data processing tasks
 
----
+
 
