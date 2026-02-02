@@ -1,14 +1,17 @@
 Task
-Given an integer, , perform the following conditional actions:
+Given an integer, n, perform the following conditional actions:
+If  n is odd, print Weird
+If  n is even and in the inclusive range of  2 to 5, print Not Weird
+If  n is even and in the inclusive range of  6 to 20 , print Weird
+If  n is even and greater than , print Not Weird 
 
-If  is odd, print Weird
-If  is even and in the inclusive range of  2 to 5, print Not Weird
-If  is even and in the inclusive range of  6 to 20 , print Weird
-If  is even and greater than , print Not Weird
+
 
 -------
 C O D E
 -------
+
+
 
 #!/bin/python3
 
@@ -17,8 +20,6 @@ import os
 import random
 import re
 import sys
-
-
 
 if __name__ == '__main__':
     n = int(input().strip())   
@@ -32,111 +33,84 @@ elif n % 2 == 0 and n > 20 :
     print("Not Weird")                    # Even and greater than 20
 
 
-Good — this is a **logic + condition control** problem, and this is exactly where people *think* they understand but quietly mess up. I’ll use the **Code Explanation Framework** and I’ll also **call out a real issue in your code** instead of pretending it’s perfect.
 
-Below is a **GitHub-ready explanation** you can paste under your solution.
+1. Problem Restatement
 
----
+An integer n is given as input.
+Based on whether n is odd or even, and which numerical range it belongs to, a specific string must be printed:
 
-# 🔹 Problem: Conditional Logic Based on Number Properties
+* Odd → Weird
+* Even & between 2–5 → Not Weird
+* Even & between 6–20 → Weird
+* Even & greater than 20 → Not Weird
 
-## 1. Problem Restatement
 
-An integer `n` is given as input.
-Based on whether `n` is **odd or even**, and which **numerical range** it belongs to, a specific string must be printed:
 
-* Odd → `Weird`
-* Even & between `2–5` → `Not Weird`
-* Even & between `6–20` → `Weird`
-* Even & greater than `20` → `Not Weird`
+2. Core Idea / Insight
 
----
-
-## 2. Core Idea / Insight
-
-The problem is not about math — it’s about **decision ordering**.
+The problem is not about math — it’s about (decision ordering).
 
 Key insight:
 
-* **Odd/even check dominates everything else**
-* For even numbers, **range-based conditions** decide the output
-* Conditions must be **mutually exclusive** and checked in the correct order
+* (Odd/even check dominates everything else)
+* For even numbers, (range-based conditions) decide the output
+* Conditions must be (mutually exclusive) and checked in the correct order
 
 If conditions overlap or are misordered, the logic breaks.
 
----
 
-## 3. Step-by-Step Logic (Without Code)
 
-1. Read the integer `n`.
-2. Check if `n` is odd.
+3. Step-by-Step Logic (Without Code)
 
-   * If yes, print `Weird` and stop.
-3. If `n` is even:
+1. Read the integer n.
+2. Check if n is odd.
+   * If yes, print Weird and stop.
+3. If n is even:
+   * If n is between 2 and 5, print Not Weird.
+   * Else if n is between 6 and 20, print Weird.
+   * Else (greater than 20), print Not Weird.
 
-   * If `n` is between `2` and `5`, print `Not Weird`.
-   * Else if `n` is between `6` and `20`, print `Weird`.
-   * Else (greater than `20`), print `Not Weird`.
+Each number satisfies (exactly one) condition.
 
-Each number satisfies **exactly one** condition.
 
----
 
-## 4. Code Walkthrough (Logic → Implementation)
+4. Code Walkthrough (Logic → Implementation)
 
-```python
 n = int(input().strip())
-```
-
 * Reads input and removes any extra whitespace.
 * Converts input to integer for numeric comparisons.
 
-```python
 if n % 2 != 0:
-```
+* (% 2 != 0) checks if n is odd.
+* Odd numbers immediately print "Weird".
 
-* `% 2 != 0` checks if `n` is odd.
-* Odd numbers immediately print `"Weird"`.
-
-```python
 elif n % 2 == 0 and 2 <= n <= 5:
-```
-
 * Confirms number is even **and** within the lower range.
-* Prints `"Not Weird"`.
+* Prints "Not Weird".
 
-```python
 elif n % 2 == 0 and 6 <= n <= 20:
-```
-
 * Even number within mid-range.
-* Prints `"Weird"`.
+* Prints "Weird".
 
-```python
 elif n % 2 == 0 and n > 20:
-```
-
 * Even number above the range.
-* Prints `"Not Weird"`.
+* Prints "Not Weird".
 
----
 
-## ⚠️ Important Code Issue (You Can’t Ignore This)
 
-Your indentation is **wrong**.
+Important Code Issue (We Can’t Ignore This)
 
-```python
+Our indentation is (wrong).
+
 if __name__ == '__main__':
     n = int(input().strip())   
 if n % 2 != 0 :
-```
 
-The condition checks are **outside** the `if __name__ == '__main__':` block.
-This will still run in some environments, but it’s **bad practice** and can break modular code.
+The condition checks are (outside) the if __name__ == '__main__': block.
+This will still run in some environments, but it’s (bad practice) and can break modular code.
 
-### Correct Structure (Minimal Fix)
+Correct Structure (Minimal Fix)
 
-```python
 if __name__ == '__main__':
     n = int(input().strip())
 
@@ -146,78 +120,70 @@ if __name__ == '__main__':
         print("Not Weird")
     elif 6 <= n <= 20:
         print("Weird")
-    else:
+    elif n % 2 == 0 and n > 20:
         print("Not Weird")
-```
 
 Notice:
 
-* No repeated `n % 2 == 0` checks
+* No repeated n % 2 == 0 checks
 * Cleaner and safer logic
 
----
 
-## 5. Time & Space Complexity
 
-* **Time Complexity:** `O(1)`
+5. Time & Space Complexity
+
+* Time Complexity: O(1)
   Only constant-time comparisons.
-* **Space Complexity:** `O(1)`
+* Space Complexity: O(1)
   One integer variable.
 
----
 
-## 6. Why This Solution Is Optimal
+
+6. Why This Solution Is Optimal
 
 * All conditions are evaluated once.
 * Uses direct comparisons instead of nested logic.
 * Eliminates redundancy.
 * Matches the problem rules exactly.
 
-There is **no faster or simpler** approach.
+There is (no faster or simpler) approach.
 
----
 
-## 7. Common Mistakes & Traps
 
-* Repeating `n % 2 == 0` unnecessarily
+7. Common Mistakes & Traps
+
+* Repeating n % 2 == 0 unnecessarily
 * Wrong indentation
 * Misordering conditions (checking range before odd/even)
-* Forgetting inclusive bounds (`<=`, `>=`)
-* Using separate `if` instead of `elif` (causes multiple prints)
+* Forgetting inclusive bounds (<=, >=)
+* Using separate if instead of elif (causes multiple prints)
 
----
 
-## 8. Trade-offs & Alternatives
+
+8. Trade-offs & Alternatives
 
 * A dictionary-based solution is possible but reduces clarity.
-* Nested `if` blocks work but are harder to read.
-* This linear `if–elif–else` chain is the **cleanest and safest**.
+* Nested if blocks work but are harder to read.
+* This linear if–elif–else chain is the (cleanest and safest).
 
----
 
-## 9. Pattern Recognition (Meta-Learning)
 
-This is a classic **rule-based classification** pattern:
+9. Pattern Recognition (Meta-Learning)
+
+This is a classic (rule-based classification) pattern:
 
 * Check dominant condition first
 * Narrow down with ranges
 * Ensure exclusivity
 
-You’ll see this pattern again in:
+We’ll see this pattern again in:
 
 * Input validation
 * Business rules
 * State machines
 * Interview decision-tree problems
 
----
 
-### Final Hard Truth
-
-This problem looks trivial — but most people mess it up because they **don’t respect condition ordering**.
-
-Your logic is mostly right, but your **structure needed correction**.
-Fixing these details is how you move from “it works” to **professional-grade code**.
 
 Bring the next one.
 
