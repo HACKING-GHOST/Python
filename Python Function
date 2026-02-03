@@ -1,0 +1,196 @@
+An extra day is added to the calendar almost every four years as February 29, and the day is called a leap day. It corrects the calendar for the fact that our planet takes approximately 365.25 days to orbit the sun. A leap year contains a leap day.
+In the Gregorian calendar, three conditions are used to identify leap years:
+
+The year can be evenly divided by 4, is a leap year, unless:
+The year can be evenly divided by 100, it is NOT a leap year, unless:
+The year is also evenly divisible by 400. Then it is a leap year.
+This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years. Source
+
+Task
+
+Given a year, determine whether it is a leap year. If it is a leap year, return the Boolean True, otherwise return False.
+Note that the code stub provided reads from STDIN and passes arguments to the is_leap function. It is only necessary to complete the is_leap function.
+
+
+
+-------
+C O D E
+-------
+
+
+
+def is_leap(year):
+    leap = False
+    if year % 4 == 0 and year % 100 != 0 or year % 400 == 0 :
+        leap = True
+    else :
+        leap = False
+    # Write your logic here
+    
+    return leap
+
+year = int(input())
+print(is_leap(year))
+
+
+
+1. Problem Restatement
+
+Given a year (integer), determine whether it is a leap year according to Gregorian calendar rules.
+
+A leap year:
+* Usually occurs every 4 years
+* But century years (divisible by 100) are not leap years
+* Unless they are also divisible by 400
+
+Return:
+* True → if leap year
+* False → otherwise
+
+
+
+2. Core Idea / Key Insight
+
+The mistake most people make (including initially here) is assuming:
+* “If a year is divisible by 4, it’s a leap year.”
+
+That’s incomplete logic.
+
+The real insight is:
+
+* The exception (100) overrides the rule (4)
+* The exception to the exception (400) restores the rule
+
+So the logic is hierarchical, not linear.
+
+
+
+3. Step-by-Step Logic (Before Writing Code)
+
+Check if the year is divisible by 400
+* If yes → leap year (always)
+Otherwise, check if the year is divisible by 100
+* If yes → NOT a leap year
+Otherwise, check if the year is divisible by 4
+* If yes → leap year
+Else → NOT a leap year
+
+This ordering matters.
+If you mix it casually, the logic breaks.
+
+
+
+4. Code Walkthrough (Logic → Implementation)
+def is_leap(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0) :
+        leap = True
+    else:
+        leap = False
+    return leap
+
+Why this condition works:
+* year % 4 == 0
+
+Checks basic leap year rule
+* year % 100 != 0
+
+Excludes century years like 1900
+* year % 400 == 0
+
+Re-includes special century years like 2000
+
+Operator precedence (CRITICAL) :
+
+Python evaluates:
+* and  → before → or
+
+So this is interpreted as:
+* (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+Which exactly matches the Gregorian rules.
+
+
+
+5. Time & Space Complexity
+
+Time Complexity: O(1)
+* Only constant number of arithmetic operations
+Space Complexity: O(1)
+* No extra data structures used
+
+
+
+6. Why This Solution Is Optimal
+
+* Uses direct mathematical rules
+* Avoids unnecessary branching
+* Single conditional handles all cases
+* Readable, efficient, and accurate
+
+Any other solution will either:
+
+* Be longer
+* Be harder to reason about
+* Or introduce logical bugs
+
+
+
+7. Common Mistakes & Traps (What You Faced)
+
+* Checking only % 4
+  * Breaks for years like 1900
+* Forgetting % 100 exclusion
+* Writing conditions in the wrong order
+* Not understanding and / or precedence
+* Printing instead of returning values
+
+My actual learning moment was realizing:
+
+“Divisible by 100 years must be explicitly excluded.”
+
+That was a logic maturity milestone.
+
+8. Trade-offs & Alternative Approaches
+More readable version (nested logic):
+def is_leap(year):
+    if year % 400 == 0:
+        return True
+    if year % 100 == 0:
+        return False
+    if year % 4 == 0:
+        return True
+    return False
+
+
+Trade-off:
+
+✔️Easier to explain verbally
+❌Slightly longer
+
+Your version:
+
+✔️Compact
+✔️Efficient
+❌Requires understanding boolean precedence
+
+Both are valid. Choice depends on audience.
+
+
+
+9. Pattern Recognition (Meta-Learning)
+
+This problem teaches three transferable skills:
+* Exception handling in logic
+  * Rule → exception → exception to exception
+* Boolean expression grouping
+  * Critical for filters, validation, conditions
+* Function-based thinking
+  * Returning values instead of printing
+  * Makes code reusable and testable
+
+We'll see this pattern again in:
+
+* Input validation
+* Authorization logic
+* Edge-case-heavy problems
+* Interview questions
